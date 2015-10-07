@@ -4,6 +4,11 @@
 .DS_Store
 
 #
+# Don't ignore gitkeep files
+#
+!.gitkeep
+
+#
 # Data files
 #
 data/*
