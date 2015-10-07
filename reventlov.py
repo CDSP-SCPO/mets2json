@@ -12,11 +12,11 @@ import xml.etree.ElementTree as ET
 #
 folderSeparator = '/'
 logFolder = 'log'
-logFile = logFolder + folderSeparator + 'metaJSON.log'
+logFile = logFolder + folderSeparator + 'reventlov.log'
 logLevel = logging.DEBUG
 dataFolder = 'data'
 dataInput = dataFolder + folderSeparator + 'cdsp_bequali_sp5.xml'
-dataOutput = dataFolder + folderSeparator + 'metaJSON.json'
+dataOutput = dataFolder + folderSeparator + 'reventlov.json'
 
 #
 # Programm
