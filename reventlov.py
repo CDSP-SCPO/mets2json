@@ -39,7 +39,7 @@ def main():
 		'dc' : 'http://purl.org/dc/elements/1.1/'
 	}
 	# Create result variable
-	# data = {}
+	data = {}
 	# data['label'] = {}
 	# data['label']['langdoc'] = 'Langage documentation'
 	# data['label']['locationofunitsofobservation'] = 'Niveau de comparatisme'
@@ -173,7 +173,7 @@ def main():
 	# data['values']['analysis']['langdoc'] = {}
 	# data['values']['analysis']['langdoc']['i'] = 4
 	# data['values']['analysis']['langdoc']['value'] = [s]
-	data['documentation_languages'] = [set]
+	data['documentation_languages'] = [s]
 
 	# langdata
 	# multiple 
@@ -480,8 +480,8 @@ def main():
 	data['data_collection_documents_types'] = [s]
 
 	## method
-	data['values']['method'] = {}
-	data['values']['method']['i'] = 3
+	# data['values']['method'] = {}
+	# data['values']['method']['i'] = 3
 
 	# methodofdatacollection : codeBook/stdyDscr/method/dataColl/resInstru
 	# multiple
