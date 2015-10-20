@@ -4,7 +4,7 @@
 #
 # Libs
 #
-import codecs, json, logging, os
+import codecs, json, logging, os, sys
 import xml.etree.ElementTree as ET
 
 #
@@ -15,7 +15,6 @@ log_folder = 'log'
 log_file = log_folder + folder_separator + 'reventlov.log'
 log_level = logging.DEBUG
 data_folder = 'data'
-data_input = data_folder + folder_separator + 'cdsp_bequali_sp5.xml'
 data_output = data_folder + folder_separator + 'reventlov.json'
 
 #
@@ -25,10 +24,10 @@ data_output = data_folder + folder_separator + 'reventlov.json'
 Convert a METS document in XML format into a MetaJSON format.
 This MetaJSON format will be used by the website to display the informations about this survey.
 '''
-def main():
+def main(mets_file):
 	# Import and parse XML file
 	logging.info('Import file')
-	tree = ET.parse(data_input)
+	tree = ET.parse(mets_file)
 	logging.info('File uploaded')
 	root = tree.getroot()
 	namespaces = {
@@ -324,9 +323,18 @@ def main():
 # Main
 #
 if __name__ == '__main__':
-	# Check that log folder exists, else create it
-	if not os.path.exists(log_folder):
-		os.makedirs(log_folder)
-	logging.basicConfig(filename = log_file, filemode = 'w', format = '%(asctime)s  |  %(levelname)s  |  %(message)s', datefmt = '%m/%d/%Y %I:%M:%S %p', level = log_level)
-	logging.info('Start')
-	main()
+	# Check that the command line has at least one argument
+	if len(sys.argv) < 2 :
+		print 'Arguments error'
+		print 'Correct usage : ' + sys.argv[0] + ' "path/to/mets/file.xml"'
+	else :
+		logging.basicConfig(filename = log_file, filemode = 'w', format = '%(asctime)s  |  %(levelname)s  |  %(message)s', datefmt = '%m/%d/%Y %I:%M:%S %p', level = log_level)
+		logging.info('Start')
+		# Check that log folder exists, else create it
+		if not os.path.exists(log_folder):
+			os.makedirs(log_folder)
+		# Check that data folder exists, else create it
+		if not os.path.exists(data_folder):
+			os.makedirs(data_folder)
+		mets_file = sys.argv[1]
+		main(mets_file)
