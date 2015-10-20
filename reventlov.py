@@ -21,9 +21,6 @@ data_output = data_folder + folder_separator + 'reventlov.json'
 #
 # Programm
 #
-logging.basicConfig(filename = log_file, filemode = 'w', format = '%(asctime)s  |  %(levelname)s  |  %(message)s', datefmt = '%m/%d/%Y %I:%M:%S %p', level = log_level)
-logging.info('Start')
-
 '''
 Convert a METS document in XML format into a MetaJSON format.
 This MetaJSON format will be used by the website to display the informations about this survey.
@@ -321,6 +318,7 @@ def main():
 	with codecs.open(data_output, 'w', 'utf8') as f:
 		f.write(json.dumps(data, ensure_ascii=False, indent=4).decode('utf8'))
 	f.close()
+	logging.info('End')
 
 #
 # Main
@@ -329,4 +327,6 @@ if __name__ == '__main__':
 	# Check that log folder exists, else create it
 	if not os.path.exists(log_folder):
 		os.makedirs(log_folder)
+	logging.basicConfig(filename = log_file, filemode = 'w', format = '%(asctime)s  |  %(levelname)s  |  %(message)s', datefmt = '%m/%d/%Y %I:%M:%S %p', level = log_level)
+	logging.info('Start')
 	main()
