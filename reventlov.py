@@ -4,7 +4,7 @@
 #
 # Libs
 #
-import codecs, io, json, logging, sys
+import codecs, json, logging, os
 import xml.etree.ElementTree as ET
 
 #
@@ -322,5 +322,11 @@ def main():
 		f.write(json.dumps(data, ensure_ascii=False, indent=4).decode('utf8'))
 	f.close()
 
+#
+# Main
+#
 if __name__ == '__main__':
+	# Check that log folder exists, else create it
+	if not os.path.exists(log_folder):
+		os.makedirs(log_folder)
 	main()
