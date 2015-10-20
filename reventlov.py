@@ -12,10 +12,8 @@ import xml.etree.ElementTree as ET
 #
 folder_separator = '/'
 log_folder = 'log'
-log_file = log_folder + folder_separator + 'reventlov.log'
 log_level = logging.DEBUG
 data_folder = 'data'
-data_output = data_folder + folder_separator + 'reventlov.json'
 
 #
 # Programm
@@ -317,6 +315,7 @@ def main(mets_file):
 
 def writeJsonFile(data) :
 	# Write results into an json data file
+	data_output = data_folder + folder_separator + sys.argv[0].replace('.py', '.json')
 	with codecs.open(data_output, 'w', 'utf8') as f:
 		f.write(json.dumps(data, ensure_ascii=False, indent=4).decode('utf8'))
 	f.close()
@@ -331,13 +330,14 @@ if __name__ == '__main__':
 		print 'Arguments error'
 		print 'Correct usage : ' + sys.argv[0] + ' "path/to/mets/file.xml"'
 	else :
-		logging.basicConfig(filename = log_file, filemode = 'w', format = '%(asctime)s  |  %(levelname)s  |  %(message)s', datefmt = '%m/%d/%Y %I:%M:%S %p', level = log_level)
-		logging.info('Start')
 		# Check that log folder exists, else create it
 		if not os.path.exists(log_folder):
 			os.makedirs(log_folder)
 		# Check that data folder exists, else create it
 		if not os.path.exists(data_folder):
 			os.makedirs(data_folder)
+		log_file = log_folder + folder_separator + sys.argv[0].replace('.py', '.log')
+		logging.basicConfig(filename = log_file, filemode = 'w', format = '%(asctime)s  |  %(levelname)s  |  %(message)s', datefmt = '%m/%d/%Y %I:%M:%S %p', level = log_level)
+		logging.info('Start')
 		mets_file = sys.argv[1]
 		main(mets_file)
