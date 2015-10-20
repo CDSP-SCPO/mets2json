@@ -10,18 +10,18 @@ import xml.etree.ElementTree as ET
 #
 # Config
 #
-folderSeparator = '/'
-logFolder = 'log'
-logFile = logFolder + folderSeparator + 'reventlov.log'
-logLevel = logging.DEBUG
-dataFolder = 'data'
-dataInput = dataFolder + folderSeparator + 'cdsp_bequali_sp5.xml'
-dataOutput = dataFolder + folderSeparator + 'reventlov.json'
+folder_separator = '/'
+log_folder = 'log'
+log_file = log_folder + folder_separator + 'reventlov.log'
+log_level = logging.DEBUG
+data_folder = 'data'
+data_input = data_folder + folder_separator + 'cdsp_bequali_sp5.xml'
+data_output = data_folder + folder_separator + 'reventlov.json'
 
 #
 # Programm
 #
-logging.basicConfig(filename = logFile, filemode = 'w', format = '%(asctime)s  |  %(levelname)s  |  %(message)s', datefmt = '%m/%d/%Y %I:%M:%S %p', level = logLevel)
+logging.basicConfig(filename = log_file, filemode = 'w', format = '%(asctime)s  |  %(levelname)s  |  %(message)s', datefmt = '%m/%d/%Y %I:%M:%S %p', level = log_level)
 logging.info('Start')
 
 '''
@@ -31,7 +31,7 @@ This MetaJSON format will be used by the website to display the informations abo
 def main():
 	# Import and parse XML file
 	logging.info('Import file')
-	tree = ET.parse(dataInput)
+	tree = ET.parse(data_input)
 	logging.info('File uploaded')
 	root = tree.getroot()
 	namespaces = {
@@ -318,7 +318,7 @@ def main():
 	data['data_collection_samplings'] = s
 
 	# Write result into file
-	with codecs.open(dataOutput, 'w', 'utf8') as f:
+	with codecs.open(data_output, 'w', 'utf8') as f:
 		f.write(json.dumps(data, ensure_ascii=False, indent=4).decode('utf8'))
 	f.close()
 
