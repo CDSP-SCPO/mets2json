@@ -313,7 +313,10 @@ def main(mets_file):
 		s.append(value.text.encode('utf8'))
 	data['data_collection_samplings'] = s
 
-	# Write result into file
+	writeJsonFile(data)
+
+def writeJsonFile(data) :
+	# Write results into an json data file
 	with codecs.open(data_output, 'w', 'utf8') as f:
 		f.write(json.dumps(data, ensure_ascii=False, indent=4).decode('utf8'))
 	f.close()
