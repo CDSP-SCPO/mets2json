@@ -45,7 +45,7 @@ def main():
 	# multiple
 	s = []
 	for value in root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:geogUnit", namespaces) :
-		s.append(value.text)
+		s.append(value.text.encode('utf8'))
 	data['coverage_spatial_units'] = s
 
 	# locationofunitsofobservation : codeBook/stdyDscr/stdyInfo/sumDscr/universe
@@ -97,7 +97,7 @@ def main():
 	s = []
 	for value in root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:dataKind", namespaces) :
 		if value.get('type') is None :
-			s.append(value.text)
+			s.append(value.text.encode('utf8'))
 	data['analysis_transcription'] = s
 
 	# anonymization : codeBook/stdyDscr/stdyInfo/notes
@@ -112,14 +112,14 @@ def main():
 	# empty array if not present in the XML
 	s = []
 	for value in root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:notes", namespaces) :
-		s.append(value.text)
+		s.append(value.text.encode('utf8'))
 	data['analysis_types'] = s
 
 	# discipline : codeBook/stdyDscr/stdyInfo/subject/topcClas
 	# multiple
 	s = []
 	for value in root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:subject/ddi:topcClas", namespaces) :
-		s.append(value.text)
+		s.append(value.text.encode('utf8'))
 	data['disciplines'] = s
 
 	# titl : codeBook/stdyDscr/citation/titlStmt/titl
@@ -137,7 +137,7 @@ def main():
 	# multiple
 	s = []
 	for value in root.find(".//ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:sumDscr/ddi:nation", namespaces) :
-		s.append(value.text)
+		s.append(value.text.encode('utf8'))
 	data['coverage_spatial_countries'] = s
 
 	# idno : codeBook/stdyDscr/citation/titlStmt/IDNo
@@ -148,7 +148,7 @@ def main():
 	# multiple
 	s = []
 	for value in root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:stdyInfo/ddi:subject/ddi:keyword", namespaces) :
-		s.append(value.text)
+		s.append(value.text.encode('utf8'))
 	# TODO
 	# keywords[language][i]
 	data['keywords'] = s
@@ -166,7 +166,7 @@ def main():
 	for value in root.find(".//ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:prodStmt/ddi:copyright", namespaces) :
 		if s != '' :
 			s += ';'
-		s += value.text
+		s += value.text.encode('utf8')
 	# TODO
 	# copyright_holders[i].rec_class=Person,
 	# copyright_holders[i].name_family,
@@ -193,7 +193,7 @@ def main():
 	for value in root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:rspStmt/ddi:AuthEnty", namespaces) :
 		if s != '' :
 			s += ';'
-		s += value.text
+		s += value.text.encode('utf8')
 	# TODO
 	# editors[i].rec_class=Person,
 	# editors[i].name_family,
@@ -211,7 +211,7 @@ def main():
 	# multiple
 	s = []
 	for value in root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:prodStmt/ddi:software", namespaces) :
-		s.append(value.text)
+		s.append(value.text.encode('utf8'))
 	data['softwares'] = s
 
 	# distrbtr : codeBook/stdyDscr/citation/distStmt/distrbtr
@@ -220,7 +220,7 @@ def main():
 	for value in root.find(".//ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:distStmt/ddi:distrbtr", namespaces) :
 		if s != '' :
 			s += ';'
-		s += value.text
+		s += value.text.encode('utf8')
 	# TODO
 	# distributors[i].rec_class=Person,
 	# distributors[i].name_family,
@@ -253,7 +253,7 @@ def main():
 	for value in  root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:prodStmt/ddi:grantNo", namespaces) :
 		if s != '' :
 			s += ';'
-		s += value.text
+		s += value.text.encode('utf8')
 	# TODO
 	# projects[i].acronym
 	# projects[i].title
@@ -267,7 +267,7 @@ def main():
 	for value in  root.findall(".//ddi:codeBook/ddi:stdyDscr/ddi:citation/ddi:prodStmt/ddi:fundAg", namespaces) :
 		if s != '' :
 			s += ';'
-		s += value.text
+		s += value.text.encode('utf8')
 	# TODO
 	# cf. above "grantno"
 
@@ -280,14 +280,14 @@ def main():
 	s = []
 	for value in root.findall(".//ddi:stdyInfo/ddi:sumDscr/ddi:dataKind", namespaces) :
 		if value.get('type'):
-			s.append(value.text)
+			s.append(value.text.encode('utf8'))
 	data['data_collection_documents_types'] = s
 
 	# methodofdatacollection : codeBook/stdyDscr/method/dataColl/resInstru
 	# multiple
 	s = []
 	for value in root.find(".//ddi:codeBook/ddi:stdyDscr/ddi:method/ddi:dataColl/ddi:resInstru", namespaces) :
-		s.append(value.text)
+		s.append(value.text.encode('utf8'))
 	data['data_collection_methods'] = s
 
 	# colldate : codeBook/stdyDscr/stdyInfo/sumDscr/collDate
@@ -307,7 +307,7 @@ def main():
 	# multiple
 	s = []
 	for value in root.find(".//ddi:codeBook/ddi:stdyDscr/ddi:method/ddi:dataColl/ddi:timeMeth", namespaces) :
-		s.append(value.text)
+		s.append(value.text.encode('utf8'))
 	data['data_collection_time_dimensions'] = s
 
 	# sampprocedure : codeBook/stdyDscr/method/dataColl/sampProc
